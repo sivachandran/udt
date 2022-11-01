@@ -1,0 +1,2 @@
+option('os', type: 'combo', choices: ['LINUX', 'OSX', 'WIN32'], description: 'Target OS')
+option('arch', type: 'combo', choices: ['IA32', 'POWERPC', 'SPARC', 'IA64', 'AMD64'], description: 'Target Architecture')
