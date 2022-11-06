@@ -15,15 +15,17 @@ libudt_sources = [
     'udtc.cpp',
 ]
 
-libudt_args = [
-    '-D@0@'.format(get_option('os')),
-    '-finline-functions',
-    '-fno-strict-aliasing',
-    '-fvisibility=hidden',
-]
+libudt_args = []
+if host_system != 'windows'
+    libudt_args += [
+        '-D@0@'.format(get_option('os')),
+        '-finline-functions',
+        '-fno-strict-aliasing',
+        '-fvisibility=hidden',
+    ]
+endif
 
 libudt_lib = library('udt', libudt_sources, cpp_args: libudt_args, pic: true)
-
 
 libudt_dep = declare_dependency(
     include_directories: include_directories('.'),

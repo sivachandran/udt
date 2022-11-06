@@ -1,23 +1,28 @@
 libudt_dep = dependency('udt')
 threads_dep = dependency('threads')
-m_dep = cxx.find_library('m')
+threads_dep = dependency('threads')
 
-app_args = [
-    '-D@0@'.format(get_option('os')),
-    '-finline-functions',
-]
+app_args = []
+if host_system != 'windows'
+    app_args += [
+        '-finline-functions',
+    ]
+endif
 
 app_deps = [
     libudt_dep,
     threads_dep,
-    m_dep,
 ]
+if host_system == 'windows'
+    app_deps += cxx.find_library('ws2_32', required: true)
+endif
 
-if get_option('os') == 'UNIX'
+if host_system == 'linux'
+    app_deps += cxx.find_library('m')
     app_deps += cxx.find_library('socket')
 endif
 
-if get_option('os') == 'SUNOS'
+if host_system == 'sunos'
     app_deps += cxx.find_library('rt')
     app_deps += cxx.find_library('socket')
 endif
