@@ -18,7 +18,6 @@ libudt_sources = [
 libudt_args = []
 if host_system != 'windows'
     libudt_args += [
-        '-D@0@'.format(get_option('os')),
         '-finline-functions',
         '-fno-strict-aliasing',
         '-fvisibility=hidden',
