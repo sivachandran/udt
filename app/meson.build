@@ -19,7 +19,6 @@ endif
 
 if host_system == 'linux'
     app_deps += cxx.find_library('m')
-    app_deps += cxx.find_library('socket')
 endif
 
 if host_system == 'sunos'
